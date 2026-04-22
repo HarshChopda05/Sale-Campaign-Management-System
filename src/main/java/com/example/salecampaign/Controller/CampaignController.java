@@ -4,6 +4,7 @@ import com.example.salecampaign.DTOs.CampaignAddRequestDTO;
 import com.example.salecampaign.DTOs.CampaignDTO;
 import com.example.salecampaign.Service.CampaignScheduler;
 import com.example.salecampaign.Service.CampaignService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class CampaignController {
     CampaignScheduler campaignScheduler;
 
     @PostMapping("/add-campaign")
-    public ResponseEntity<?> createCampaign(@RequestBody CampaignAddRequestDTO addCompaignRequest){
+    public ResponseEntity<?> createCampaign(@Valid @RequestBody CampaignAddRequestDTO addCompaignRequest){
         campaignService.addCampaign(addCompaignRequest);
         return new ResponseEntity<>("Campaign is Created.", HttpStatus.CREATED);
     }

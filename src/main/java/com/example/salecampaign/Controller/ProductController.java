@@ -7,6 +7,7 @@ import com.example.salecampaign.DTOs.ProductPaginationResponseDTO;
 import com.example.salecampaign.Service.CampaignService;
 import com.example.salecampaign.Service.ProductHistoryService;
 import com.example.salecampaign.Service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class ProductController {
     CampaignService campaignService;
 
     @PostMapping("/add-products") //here add try catch because if multiple causes are occur then it will notify
-    public ResponseEntity<?> addProducts(@RequestBody ProductAddRequestDTO productAddRequestDTO){
+    public ResponseEntity<?> addProducts(@Valid @RequestBody ProductAddRequestDTO productAddRequestDTO){
 
         if(productAddRequestDTO == null || productAddRequestDTO.getProductRequestDTOS().isEmpty()){
             throw new IllegalArgumentException("Product list cannot be empty");
